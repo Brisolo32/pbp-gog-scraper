@@ -1,0 +1,18 @@
+{
+  "name": "pbp-gog-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "nexe -i src/main.js -o \"dist/pbp-gog-scraper\" -t x64-14.15.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "fs-extra": "^10.1.0",
+    "nexe-natives": "^1.0.2",
+    "node-fetch": "^3.2.10"
+  }
+}
