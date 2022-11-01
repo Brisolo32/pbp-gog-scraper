@@ -18,7 +18,9 @@ async function scrapeMagnets(url, cacheLoc) {
 
     const products = json.products
 
+    // Checks if there is no results inside products
     if (products.length === 0) {
+        // If there is none, then log a message and the exit
         console.log('\nGame/DLC not found. (Perhaps you typed it wrong?)')
         process.exit()
     }
@@ -33,7 +35,8 @@ async function scrapeMagnets(url, cacheLoc) {
             gamePub: prod.publisher,
             gameTitle: prod.title,
             price: `${prod.price.symbol}${prod.price.amount}`,
-            basePrice: `${prod.price.symbol}${prod.price.baseAmount}`
+            basePrice: `${prod.price.symbol}${prod.price.baseAmount}`,
+            URL: `https://gog.com${prod.url}`
         }
 
         template.requests.push(data)
@@ -45,6 +48,7 @@ async function scrapeMagnets(url, cacheLoc) {
 }
 
 function main() {
+    const uri = "https://embed.gog.com/games/ajax/filtered?mediaType=game&search="
     // Creates 2 constants: query and cache
     const query = process.argv[2]
         .replace("--query=", "")
@@ -57,5 +61,5 @@ function main() {
 
     // Logs them for fun
     console.log(`Query: ${query}\nCache: ${cache}`)
-    scrapeMagnets(`https://embed.gog.com/games/ajax/filtered?mediaType=game&search=${query}`, cache)
+    scrapeMagnets(uri + query, cache)
 }
